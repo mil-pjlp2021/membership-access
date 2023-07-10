@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
 
 class SocialiteController extends Controller
 {
@@ -57,6 +58,10 @@ class SocialiteController extends Controller
                     ['email' => $suser->getEmail(),],
                     ['name'  => $suser->getName(), 'google_id' => $suser->getId(),]
                 );
+            }
+            //assign role user
+            if (!$user->hasAnyRole(Role::all())) {
+                $user->assignRole('Tipe A');
             }
         }
 
