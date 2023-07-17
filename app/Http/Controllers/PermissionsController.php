@@ -12,7 +12,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        return view('permission');
+        return view('permission')->with('permissions',Permission::all());
     }
 
     /**
